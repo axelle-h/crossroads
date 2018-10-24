@@ -1,0 +1,759 @@
+#Crossroads
+
+#Set player variable
+player_location = 0
+
+#Chapters and endings
+
+#Starting page
+start = """
+    Ugh. What happened last night? 
+    
+    You can't remember, but your head feels like a pachinko machine shaken one time too many, and everything smells like garbage. Wait, no. That’s just you.
+    
+    There's a gigantic crow, sitting on the telephone lines above you. You get the distinct feeling it is judging you.
+    
+    You glare at it. Damn bird doesn't seem to care.
+    
+    Though the garbage heap is surprisingly comfortable, as piles of trash go, it occurs to you that should probably get a move on -- before you provoke the bird into pecking you to death. 
+    
+    You sit up with a grunt and crawl out of the pile of garbage bags. 
+    
+    After a cursory check, you realize you've lost your phone and your wallet. Your suit jacket is long gone, but you have a few crumpled thousand-yen notes in your pant pocket.
+    
+    What do you want to do now?
+
+    a. Try to figure out where you are. 
+    b. There must be someone around. Ask them where you are.
+    c. Go... this way. Yep, this way is good. 
+    """
+
+#Branch 1
+
+#Try to figure out where you are (1)
+page_1 = """
+    You dimly remember going this way last night.
+
+    Hey, isn't that where you threw up last night!? Now you're making progress.
+    
+    And the izakaya right next to the Family Mart does seem terribly familiar. As in, 'I've just spent half the night drinking there', familiar.
+    
+    You squint at the small sign above the door. Yamato-san's bar. 
+    
+    What do you want to do now?
+
+    a. Ask the owner if he has found your phone or your wallet.
+    b. Follow the vomit. The vomit will show you the way. 
+    c. Buy water at Family Mart. Your head is killing you. 
+
+    """
+
+# Ask the izakaya owner if he knows where your phone is (11)
+page_11 = """
+    The sign on the door says "Closed", but the door is not locked, which is practically an invitation in your book. Besides, you're a regular. 
+    
+    The izakaya is quiet and dim, and blessedly free of judgmental birds. You blink a few times until your eyes adjust to the darkness.
+
+    "Hello?" you call out softly, but there's no answer.
+    
+    You wander around for a few minutes, then notice a door has been left half open. It leads into a softly lit room, where a dozen of burly, serious-looking men in suits are sitting around a 
+    table, counting piles of crisp yen notes and weighing neat little plastic bags of transparent crystals on a kitchen scale.
+    
+    It must be your lucky day: you've just walked into a drug deal.
+    
+    What do you want to do now?
+
+    a. Scream (manfully) and run for your life. 
+    b. Muster up a snile and greet the bar owner by name.
+    """
+
+#Follow the vomit
+page_12 = """
+    You decide to follow the trail of vomit. Hey, it's as good an idea as any -- and if the crow disapproves, it keeps its opinion to itself.
+    
+    After a few minutes, you realize that your tracking skills are sorely lacking, and you have no idea if the vomit you're examining is even yours.
+    
+    Bleh.
+    
+    This was a terrible idea.
+    
+    What do you want to do now?
+    
+    a. Try to flag a cab. 
+    b. Start looking for the subway station.
+    """
+
+#Muster a smile and greet the owner by name
+page_112 = """
+    You know this place. You've been drinking here for years with your boss. You spent all of last night downing shots here.
+    
+    "Good morning, Yamato-san," you manage to force out, with a smile you hope doesn't look too manic. "I lost my phone last night. Just wanted to see if you had, err, found it."
+    
+    Yamato gives you a hard look, and you keep your expression as neutral as you can manage it, very pointedly keeping your eyes away from the burly men, the piles of money and the small bags full of crystals.
+    
+    After a minute, Yamato's face relaxes a fraction, and he returns your smile.
+    
+    "As a matter of fact, I did find your phone as well as your wallet." He shakes his head in mild reproof. "You must be more careful in the future."
+    
+    He's not talking about your alcohol consumption, you realize. Or your lost possessions.
+    
+    You nod frantically.
+    
+    Yamato makes his way to you and takes your arm, steering you gently but firmly outside of the backroom. He closes and locks the door after you.
+    
+    "Stay here," Yamato orders. "Don't touch anything."
+    
+    Yamato strides to the bar and rummages under it for a few instants before surfacing.
+    
+    "Here, your phone and your wallet. Now, let's get you a taxi. You will go home, and we will never speak of this again. Clear?"
+    
+    Some devilish part of you almost replies, 'Crystal' but wisely, you decide to abstain.
+    """
+
+page_13 = """
+    The Family Mart is loud and bright. You cringe, the pain in your head flaring to an almost unbearable level. 
+    
+    "Welcome!" the staff chirps as you pass by the register.
+    
+    You consider throwing up on the squeaky clean floor in retaliation for their unbearable cheerfulness, but stop yourself at the last minute. 
+    
+    Truly, your mercy knows no bounds. (Also, you really need to buy some water).
+    
+    You grab a bottle of water and some rice balls to settle your stomach, and pay for both with some of your remaining cash.
+    
+    There are a couple of small tables near the porn magazines. You drag yourself to a chair and just sit there, sipping your water.
+    
+    What do you want to do next?
+    
+    a. Start looking for the metro station.
+    b. Try to flag a cab.
+    """
+
+page_121 = """"
+    The streets around you are deserted, save for a few crows looking at you mockingly.
+    
+    Damn birds.
+    
+    You reason that you'd have more chance to find a taxi on a main thoroughfare, and you try to head toward what you hope is traffic noise.
+    
+    The main street is indeed busy enough, and you try to flag a cab.
+    
+    After a few unsuccessful attempts (not that you can blame the drivers, exactly -- you probably look like a homeless banker), eventually one taxi stops and you climb in gratefully.
+    
+    You pretend not to notice the driver pursing his lips silently as the smell of fresh garbage permeates the cab.
+    
+    What do you want to do now?
+    
+    a. Head for the office. No rest for the wicked.
+    b. Head home. You need to rest.
+    """
+
+#Branch 2
+
+#There must be someone around. Ask them where you are (2)
+page_2 = """
+    Asking someone sounded like a solid idea. At least in theory. 
+    
+    In practice, it turns out smelling like a dumpster and looking like one has literally crawled out of a garbage can tends to make people run away from you. Who knew?
+    
+    You end up asking a homeless man. Perhaps he is too drunk to flee, or perhaps he recognizes a kindred garbage soul. Either way, one does not look a gift homeless man in the mouth. (No, really. One doesn't.)
+    
+    Your new homeless friend mumbles something like "Ginza". You hand him a crumpled thousand-yen note in thanks. He offers you a swig of his bottle.
+    
+    What do you want to do now?
+    
+    a. Take a swig and cheer to friendship. 
+    b. Decline politely, and start looking for the metro station.
+    c. Go in search of a manga café. You need a shower.
+    """
+
+#Take a swig and cheer to friendship
+page_21 = """
+
+    You tell yourself it can't possibly make anything worse.
+    
+    "To smelling like garbage!" you toast, and take a hearty swing of the clear liquid.
+    
+    You take turns drinking with your new friend.
+    
+    A few hours later...
+    """
+
+#Start looking for the subway station
+page_22 = """
+    You realize that you need to pull yourself together, and quick. You haven't slept in god knows how long, you're as hungover as a housewife from the 50s on a Tuesday morning, 
+    and you are fraternizing with the homeless.
+    
+    You look around, try to get your bearings. You remember vaguely where you are now, and steer your sorry carcass toward what you hope is the subway station.
+    
+    You quickly suspect you're heading the wrong way; but even a broken clock is right twice a day, and you finally run into a different subway station.
+    
+    What do you want to do now?
+    
+    a. Head for the office. No rest for the wicked.
+    b. Head home. You need to rest.
+    """
+
+#Try to find a manga cafe
+page_23 = """
+    Easier said than done, when one does not have a GPS. How did we ever manage to get anywhere in the olden days?
+    
+    After wandering around for a while, it occurs to you that you have a perfectly functional shower at home. And even one at the office. Besides, you have so much work to do...
+    
+    You hesitate.
+    
+    What do you want to do now?
+    
+    a. Flag a cab and go home.
+    b. Flag a cab and go to work.
+    c. Keep looking for a manga café.
+    """
+
+#Branch 3
+
+
+#Go... this way. Yep, this way is good.
+page_3 = """"
+    Okay. So. This is a street. And this here... is another street. And another one. No street names, because Japan. 
+    
+    You walk around for what seems like hours. You see the same Family Mart three times in a row, but you're not sure if you're hallucinating or simply walking in circles. Or perhaps Family Marts are just everywhere.
+    
+    You sit down by a pile of garbage bags -- it seems fitting -- and contemplate your life. 
+    
+    It doesn't go well.
+   
+    What do you want to do now?
+    
+    a. Buy water at the Family Mart. Your head is killing you.
+    b. Stand up and keep walking around aimlessly. 
+    c. Buy alcohol at the Family Mart. Hair of the dog and all that jazz.
+    """
+
+#Buy alcohol at the Family Mart
+page_33 = """
+    The Family Mart is loud and bright. You cringe, the pain in your head flaring to an almost unbearable level. 
+    
+    "Welcome!" the staff chirps as you pass by the register.
+    
+    You consider throwing up on the squeaky clean floor in retaliation for their unbearable cheerfulness, but stop yourself at the last minute. Truly, your mercy knows no bounds. (Also, you really need to buy some booze).
+    
+    The hard liquor aisle with its selection of cheap off-brand bottles looks awfully inviting. 
+    
+    What do you want to do now?
+    
+    a. Reconsider your life choices.
+    b. Buy the goddamn booze.
+    """
+
+#Reconsider your life choices
+page_331 =""""
+    What the hell are you doing?
+    
+    You woke up lying on garbage bags, hungover and miserable. You can't remember anything  about the previous night. You've lost your jacket, your wallet and your phone. You've been pulling all-nighters at work for the past month, and you haven't gone home in three days.
+    
+    Again, what the hell are you doing?
+    
+    There's nothing here for you.
+    
+    You need to go home to your wife. You need to drink some water. You need to quit your job. Not necessarily in that order.
+    
+    What do you want to do now?
+    
+    a. Flag a cab and go home. 
+    b. Ask the staff where the nearest subway station is, and go home.
+    """
+
+#The one where you just say fuck it
+page_332 = """"
+
+    You know what? Fuck it.
+    
+    You can buy hard liquor at 5:30 in the morning if you want. You can even drink it. Who's going to stop you?
+    
+    Nobody, that's who.
+    
+    You grab two bottles of cheap vodka and glare at the cashier when he eyes your purchase with concern.
+    
+    "What, you want some?" you sneer at him, and relish the moment he cringes away with a feeble, "No, sir."
+    
+    You take a swig of the vodka. It's vile, as though someone distilled all of the nastiness of the universe into a clear bottle with a cheap logo. 
+    
+    It's perfect.
+    
+    Fuck everything, you think, and take another long gulp. 
+    
+    A few hours later...
+    
+    """
+
+
+#Endings
+
+#Yamato saves your life (Ending #2)
+END_10 = """
+    The cab arrives quickly, as though the driver knew better than to mess with Yamato.
+
+    You hesitate, torn between sheer common sense and the desire to thank Yamato for sparing your life. In the end, common sense prevails, and you climb into the taxi without a word.
+
+    The drive back to your house is utterly surreal. You stare outside the window at the empty streets.
+
+    Exhaustion creeps over you slowly, like a cold morning fog over the country side. You start to wonder if you've imagined it all.
+
+    THE END.
+    """
+
+# Scream and try to escape (Ending #1)
+END_1 = """
+    You let out a perfectly manly shriek, turn around and run like a bat out of hell. 
+
+    Or try to.
+
+    You're dehydrated and dizzy, and a klutz at the best of times. Your laces are untied, and you trip over them, finally proving your mother right after nearly thirty years.
+
+    You fall and hit your head on the corner of a table.
+
+    Yes, it's a stupid way to die, but really, you kind of deserve it. 
+
+    THE END.
+"""
+
+#Stand up and keep walking around aimlessly
+END_5 = """"
+    You walk around in a daze.
+    
+    Your life is garbage.
+    
+    You are a garbage person, working in a garbage industry. You even smell like garbage.
+    
+    Lost in your self-pity, you don't notice the garbage truck.
+    
+    *record scratches*
+    
+    Yes, you guessed right: it runs you over.
+    
+    If you weren't already dead, the irony would kill you.
+
+    THE END.
+    """
+
+#You keep looking for a manga cafe
+END_14 = """"
+    Eventually, you spy an odd-looking man dressed in a Naruto hoodie and decide to follow him. 
+    
+    Right on the money: he does indeed enter a manga café.
+    
+    You follow him inside and spend your last few thousand yens to rent a private booth. The first thing you do is take a blistering hot shower to wash away the grime of the past night.
+    
+    Back in the booth, you turn on the computer and log on to your email.
+    
+    You write to your boss first: a quick, polite email informing him that you are done, you quit, and since you are being frank -- his jokes are terrible.
+    
+    Next you write to your wife.
+    
+    You write all the things you should have said and instead kept inside. You tell her the truth: you are tired, you are sorry, you love her.
+    
+    You want to start over, if she'll have you. You give her the address of the manga café and tell her to pack a suitcase, because you just bought two one-way Shinkansen tickets for Kyoto. 
+    
+    Let's go, you write.
+    
+    You send the email, heart pounding in your chest, and you wait.
+
+    THE END.
+    """
+
+#Back to work Subway
+END_6 = """
+    At this hour, there is almost nobody taking the subway, and the ride to your office in Akasaka-Mitsuke is quick and quiet. You do not meet any colleagues on the way there, for which you are eternally grateful. 
+    
+    You drag yourself to the lobby, then the lifts, your floor, and finally your workstation. The office is deserted. It's too early even for the cleaning lady to be puttering about.
+    
+    You crack open an energy drink and get back to work. In the middle of reviewing your Powerpoint presentation on the fiscal advantages of investing in Luxemburg, you gasp, suddenly out of breath.
+    
+    You take another swig of your Red Bull, but it only serves to make you choke. 
+    
+    Cold sweat gathers at your brow and between your shoulder blades. Pain flares in your arm, deep and constricting. You fall to your knees on the ugly grey office carpet and throw up. 
+    
+    You lie down on the floor by the puddle of vomit, and squeezes your eyes shut. 
+    
+    When you open them again, you realize there is a crow sitting on your desk, watching you.
+    
+    It caws at you, mockingly.
+    
+    You feel an instant of guilt for the poor cleaning lady who is going to find your corpse.
+    
+    Then darkness descends and swallows you whole.
+    
+    THE END.
+    """
+# Back to work/Taxi
+END_9 = """
+    At this hour, the streets of downtown Tokyo are practically empty, and the ride to your office in Akasaka-Mitsuke is incredibly quick. 
+
+    You drag yourself to the lobby, then the lifts, your floor, and finally your workstation. The office is deserted. It's too early even for the cleaning lady to be puttering about.
+
+    You crack open an energy drink and get back to work. In the middle of reviewing your Powerpoint presentation on the fiscal advantages of investing in Luxemburg, you gasp, suddenly out of breath.
+
+    You take another swig of your Red Bull, but it only serves to make you choke. 
+
+    Cold sweat gathers at your brow and between your shoulder blades. Pain flares in your arm, deep and constricting. You fall to your knees on the ugly grey office carpet and throw up.
+
+    You lie down on the floor by the puddle of vomit, and squeezes your eyes shut.
+
+    When you open them again, you realize there is a crow sitting on your desk, watching you.
+
+    It caws at you, mockingly.
+
+    You feel an instant of guilt for the poor cleaning lady who is going to find your corpse.
+
+    Then darkness descends and swallows you whole.
+
+    THE END.
+    """
+
+#Head home/Subway
+END_11 = """
+    Screw work, you think viciously. 
+    
+    Work is the reason you've been drinking yourself into oblivion. Work is the reason you haven't spoken to your wife in four days.
+    
+    Screw work.
+    
+    Work can go suck it.
+    
+    There is an older man in a faded grey suit sitting next to you, studiously trying to avoid your gaze.
+    
+    "Could I borrow your phone?" you ask him.
+    
+    The man wisely decides not to antagonize his haggard, garbage-smelling co-passenger and hands you an old flip phone.
+    
+    With shaking hands, you dial in an all too familiar number. The dial tones as it tries to connect is the sweetest sound you've heard in months.
+    
+    Click.
+    
+    "Who's this?" your boss mumbles, sounding about as fresh as you smell.
+    
+    "It's me," you answer, and by now you’ve made that call often enough, at all hours of the day and night, that he doesn’t even feel the need for confirmation.
+    
+    "Something happen at the office?" your boss asks automatically, because of course he does.
+    
+    "I don't know and I don't care," you reply mildly. "I quit. You'll have my letter of resignation on your desk by noon. But I wanted you to know right away."
+    
+    "Wha-- you can't do that! The launch is in a month!" 
+    
+    "I can, I have, and I would again," you answer cheerfully. "Now I'm going home to my wife, and I'm going  to sleep for a week."
+    
+    With that, you hang up the phone, flipping it closed with a satisfying clack. You hand it back to the older man, who picks it up gingerly, gets up and changes subway cars as fast as he can go without actually running.
+    
+    You realize you don't care at all. 
+   
+    Leaning back against the seat, you watch the stations run by, each second bringing you closer to home. To your wife.
+    
+    And for the first time in a long while, you smile. 
+
+    THE END.
+    """
+#Head home/Taxi
+END_12 = """"
+    Screw work, you think viciously. 
+    
+    Work is the reason you've been drinking yourself into oblivion. Work is the reason you've not spoken to your wife in four days.
+    
+    Screw work.
+    
+    Work can go suck it.
+    
+    "Could I borrow your phone?" 
+    
+    The driver wisely decides not to antagonize his haggard, garbage-smelling passenger and hands you an old flip phone.
+    
+    With shaking hands, you dial in an all too familiar number. The dial tones as it tries to connect is the sweetest sound you've heard in months.
+    
+    Click.
+    
+    "Who's this?" your boss mumbles, sounding about as fresh as you smell.
+    
+    "It's me," you answer, and by now you’ve made that call often enough, at all hours of the day and night, that he doesn’t even feel the need for confirmation.
+    
+    "I don't know and I don't care," you reply mildly. "I quit. You'll have my letter of resignation on your desk by noon. But I wanted you to know right away."
+    
+    "Wha-- you can't do that! The launch is in a month!" 
+    
+    "I can, I have, and I would again," you answer cheerfully. "Now I'm going home to my wife, and I'm going  to sleep for a week."
+    
+    With that, you hang up the phone, flipping it closed with a satisfying clack. You hand it back to the driver, who looks at you with newfound respect.
+    
+    Leaning back against the seat, you watch the streets run by as the city slowly shakes itself awake.
+    
+    And for the first time in a while while, you smile. 
+    
+    THE END.
+    """
+
+# Game loop
+while True:
+    if player_location == 0:
+        print(start)
+        player_choice = input("Please select a, b or c.")
+        number_confirm = 0
+        while number_confirm < 1:  # Confirmation loop
+            if player_choice == 'a':
+                player_location = 1
+                number_confirm = 1
+            elif player_choice == 'b':
+                player_location = 2
+                number_confirm = 1
+            elif player_choice == 'c':
+                player_location = 3
+                number_confirm = 1
+            else:
+                print("Please only enter a, b or c.")
+
+    if player_location == 1:
+        print(page_1)
+        player_choice = input("Please select a, b or c.")
+        number_confirm = 0
+        while number_confirm < 1:  # Confirmation loop
+            if player_choice == 'a':
+                player_location = 11
+                number_confirm = 1
+            elif player_choice == 'b':
+                player_location = 12
+                number_confirm = 1
+            elif player_choice == 'c':
+                player_location = 13
+                number_confirm = 1
+            else:
+                print("Please only enter a, b or c.")
+
+    if player_location == 2:
+        print(page_2)
+        player_choice = input("Please select a, b or c.")
+        number_confirm = 0
+        while number_confirm < 1:  # Confirmation loop
+            if player_choice == 'a':
+                player_location = 21
+                number_confirm = 1
+            elif player_choice == 'b':
+                player_location = 22
+                number_confirm = 1
+            elif player_choice == 'c':
+                player_location = 23
+                number_confirm = 1
+            else:
+                print("Please only enter a, b or c.")
+
+    if player_location == 3:
+        print(page_3)
+        player_choice = input("Please select a, b or c.")
+        number_confirm = 0
+        while number_confirm < 1:  # Confirmation loop
+            if player_choice == 'a':
+                player_location = 13
+                number_confirm = 1
+            elif player_choice == 'b':
+                player_location = 15 #Ending 5
+                number_confirm = 1
+            elif player_choice == 'c':
+                player_location = 33
+                number_confirm = 1
+            else:
+                print("Please only enter a, b or c.")
+
+    if player_location == 11:
+        print(page_11)
+        player_choice = input("Please select a or b.")
+        number_confirm = 0
+        while number_confirm < 1:  # Confirmation loop
+            if player_choice == 'a':
+                player_location = 16 #Ending 1
+                number_confirm = 1
+            elif player_choice == 'b':
+                player_location = 112
+                number_confirm = 1
+            else:
+                print("Please only enter a or b.")
+
+    if player_location == 12:
+        print(page_12)
+        player_choice = input("Please select a or b.")
+        number_confirm = 0
+        while number_confirm < 1:  # Confirmation loop
+            if player_choice == 'a':
+                player_location = 121
+                number_confirm = 1
+            elif player_choice == 'b':
+                player_location = 22
+                number_confirm = 1
+            else:
+                print("Please only enter a or b.")
+
+    if player_location == 13:
+        print(page_13)
+        player_choice = input("Please select a or b.")
+        number_confirm = 0
+        while number_confirm < 1:  # Confirmation loop
+            if player_choice == 'a':
+                player_location = 22
+                number_confirm = 1
+            elif player_choice == 'b':
+                player_location = 121
+                number_confirm = 1
+            else:
+                print("Please only enter a or b.")
+
+    if player_location == 15: #Ending 5  Garbage Truck
+            print(END_5)
+            user_answer = input('Well, you died. Do you want to try again? [y/n]')
+            if user_answer == 'y':
+                player_location = 0  #Starts over
+            if user_answer == 'n':
+                print('As you wish!')
+                break
+
+    if player_location == 16: #Ending 1 Mafia death
+            print(END_1)
+            user_answer = input('Well, you died. Do you want to try again? [y/n]')
+            if user_answer == 'y':
+                player_location = 0  #Starts over
+            if user_answer == 'n':
+                print('As you wish!')
+                break
+
+    if player_location == 21:
+        print(page_21)
+        player_location = 0 #Starts over
+
+    if player_location == 22:
+        print(page_22)
+        player_choice = input("Please select a or b.")
+        number_confirm = 0
+        while number_confirm < 1:  # Confirmation loop
+            if player_choice == 'a':
+                player_location = 77  # Ending 6 (Work/Subway)
+                number_confirm = 1
+            elif player_choice == 'b':
+                player_location = 78  # Ending 11 (Home/Subway)
+                number_confirm = 1
+            else:
+                print("Please only enter a or b.")
+
+    if player_location == 23:
+        print(page_23)
+        player_choice = input("Please select a, b or c.")
+        number_confirm = 0
+        while number_confirm < 1:  # Confirmation loop
+            if player_choice == 'a':
+                player_location = 17 #Ending 12 (Home/Taxi)
+                number_confirm = 1
+            elif player_choice == 'b':
+                player_location = 18 #Ending 9 (Work/Taxi)
+                number_confirm = 1
+            elif player_choice == 'c':
+                player_location = 19 #Ending 14 (Manga cafe)
+                number_confirm = 1
+            else:
+                print("Please only enter a, b or c.")
+
+    if player_location == 33:
+        print(page_33)
+        player_choice = input("Please select a or b.")
+        number_confirm = 0
+        while number_confirm < 1:  # Confirmation loop
+            if player_choice == 'a':
+                player_location = 331
+                number_confirm = 1
+            elif player_choice == 'b':
+                player_location = 332
+                number_confirm = 1
+            else:
+                print("Please only enter a or b.")
+
+    if player_location == 77: #Ending 6 Subway Work
+        print(END_6)
+        user_answer = input('Well, you died. Do you want to try again? [y/n]')
+        if user_answer == 'y':
+            player_location = 0  #Starts over
+        if user_answer == 'n':
+            print('As you wish!')
+            break
+
+    if player_location == 78:  # Ending 11 Subway Home
+        print(END_11)
+        user_answer = input('Well, you made it home. Do you want to try again? [y/n]')
+        if user_answer == 'y':
+            player_location = 0  # Starts over
+        if user_answer == 'n':
+            print('As you wish!')
+            break
+
+    if player_location == 17:  # Ending 12 Taxi Home
+        print(END_12)
+        user_answer = input('Well, you made it home. Do you want to try again? [y/n]')
+        if user_answer == 'y':
+            player_location = 0  # Starts over
+        if user_answer == 'n':
+            print('As you wish!')
+            break
+
+    if player_location == 18:  # Ending 9 Taxi Work
+        print(END_9)
+        user_answer = input('Well, you died. Do you want to try again? [y/n]')
+        if user_answer == 'y':
+            player_location = 0  # Starts over
+        if user_answer == 'n':
+            print('As you wish!')
+            break
+
+    if player_location == 19:  # Ending 14 Manga cafe
+        print(END_14)
+        user_answer = input("Well, you might make it this time. Do you want to try again? [y/n]")
+        if user_answer == 'y':
+            player_location = 0  # Starts over
+        if user_answer == 'n':
+            print('As you wish!')
+            break
+
+    if player_location == 79:  # Ending 10 Yamato Taxi
+        print(END_10)
+        user_answer = input("Well, you survived. Barely. Do you want to try again? [y/n]")
+        if user_answer == 'y':
+            player_location = 0  # Starts over
+        if user_answer == 'n':
+            print('As you wish!')
+            break
+
+    if player_location == 112:
+        print(page_112)
+        player_location = 79  # Goes to ending 10 Yamato Taxi
+
+    if player_location == 121:
+        print(page_121)
+        player_choice = input("Please select a or b.")
+        number_confirm = 0
+        while number_confirm < 1:  # Confirmation loop
+            if player_choice == 'a':
+                player_location = 17 #Ending 12 (Home/Taxi)
+                number_confirm = 1
+            elif player_choice == 'b':
+                player_location = 78 #Ending 11 (Home/Subway)
+                number_confirm = 1
+            else:
+                print("Please only enter a or b.")
+
+    if player_location == 331:
+        print(page_331)
+        player_choice = input("Please select a or b.")
+        number_confirm = 0
+        while number_confirm < 1:  # Confirmation loop
+            if player_choice == 'a':
+                player_location = 17 #Ending 12 (Home/Taxi)
+                number_confirm = 1
+            elif player_choice == 'b':
+                player_location = 78 #Ending 11 (Home/Subway)
+                number_confirm = 1
+            else:
+                print("Please only enter a or b.")
+
+    if player_location == 332:
+            print(page_332)
+            player_location = 0  #Starts over
